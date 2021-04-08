@@ -1,8 +1,9 @@
 const fetch = require("node-fetch");
 const dotenv = require ('dotenv');
 dotenv.config();
-var APIusername = process.env. APIUSERNAME;
-
+var APIusername = process.env. APIUSERNAME;//dianabetancourt
+const apiKey= process.env. APIKEY;
+//https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
 
 //emty JS project to act as endpoint for all routes
 const projectData = {};
@@ -37,39 +38,65 @@ app.listen(8081, function () {
 //axions instead of fetch
 const axios = require('axios');
 //post route
-//API call 
-/*const getDataFromGeoNames= async (username,city)=>{
-    const url=`http://api.geonames.org/searchJSON?q=${city}&maxRows=10&=${username}`;
-//http://api.geonames.org/search?q=london&maxRows=10&username=dianabetancourt
+//Geonames API function definition
+const getDataFromGeoNames= async (username,city)=>{
+    const url=`http://api.geonames.org/searchJSON?q=${city}&maxRows=10&username=${username}`;
     try{
         return await axios.get(url)
                 .then(res=>{
                     return {
                         lat:res.data.geonames[0].lat,
-                        lng:res.data.geonames[0].lng
+                        lng:res.data.geonames[0].lng 
                     }
                 });
     } catch(error){
         console.log("error", error)
     }
 }
-*/
+//Get data from weather bit function definition
+const getDataFromWeatherBit = async (lat, lng, key)=>{
+    const url =`https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${key}`;
+    try{
+        return await axios.get(url)
+                .then(res=>{
+                    return {
+                        high_temp: res.data.high_temp
+                    }
+                });
+    } catch(error){
+        console.log("error", error)
+    }
+}
 
+//retrieving the user input that indicates the city
 app.post('/addCity', function(req,res){
-    let data =req.body.destination;
-    newEntry = {
+    let city=req.body.destination;
+    console.log(city);
+   /* newEntry = {
         city:req.body.destination
     }
     projectData.newEntry = newEntry;
-    console.log(projectData)
-    res.send(projectData);
+    res.send(newEntry); */
+
+   //Geonames API function call 
+    getDataFromGeoNames(APIusername,city).then(
+        apiResponse => {
+        res.json(apiResponse);
+        console.log("api-response:" + apiResponse.lng + apiResponse.lat)
     
+    
+
+    //https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
+
+
+      await getDataFromWeatherBit (lat,apiResponse.lng,apiKey).then(
+        weatherApiResponse => {
+            res.json(weatherApiResponse);
+            console.log("api-response:" + weatherApiResponse)
+            
+        })
+
+        
+    })
+
 })
-
-
-/*getDataFromGeoNames(APIusername,req.body.destination).then(
-    apiResponse => {
-    console.log(apiResponse)
-    res.json(apiResponse);
-    });
-})*/
