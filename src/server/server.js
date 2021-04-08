@@ -82,19 +82,20 @@ app.post('/addCity', function(req,res){
     getDataFromGeoNames(APIusername,city).then(
         apiResponse => {
         res.json(apiResponse);
-        console.log("api-response:" + apiResponse.lng + apiResponse.lat)
-    
+        console.log("api-response long:" + apiResponse.lng + "lat"+ apiResponse.lat)
+            
     
 
     //https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
 
 
-      await getDataFromWeatherBit (lat,apiResponse.lng,apiKey).then(
+      getDataFromWeatherBit (apiResponse.lat,apiResponse.lng,apiKey).then(
         weatherApiResponse => {
             res.json(weatherApiResponse);
             console.log("api-response:" + weatherApiResponse)
             
         })
+
 
         
     })
