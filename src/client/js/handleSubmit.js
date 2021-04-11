@@ -2,10 +2,11 @@ function handleSubmit(event){
  event.preventDefault()
  
  let destination = document.getElementById('destination').value;
- let date = document.getElementById('date').value;
-
+ let departureDate = document.getElementById('date').value;
+ let returnDate = document.getElementById('return-date').value;
+ let today = new Date(); 
       
-postData('http://localhost:8081/addCity', {destination: destination})
+postData('http://localhost:8081/addCity', {destination: destination, departureDate: departureDate, returnDate: returnDate})
     
 } 
 
@@ -23,7 +24,7 @@ const postData = async ( url = '', data = {})=>{
 
     try {
       const newData = await response.json();
-      console.log(newData);//long and lat
+      console.log(newData);//weather data from weatherbit
       return newData;
     }catch(error) {
       console.log("error", error);
