@@ -3,6 +3,7 @@ const dotenv = require ('dotenv');
 dotenv.config();
 var APIusername = process.env. APIUSERNAME;//dianabetancourt
 const apiKey= process.env. APIKEY;
+const pixabaykey = process.env. PIXABAYKEY;
 let today = new Date(); 
 let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 //https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
@@ -63,7 +64,7 @@ const getDataFromWeatherBit = async (lat, lng, key)=>{
                 .then(res=>{
                     console.log(res.data)
                     return {
-                        high_temp: res.data.data[1].high_temp
+                        data: res.data.data
                     }
                 });
     } catch(error){
@@ -71,48 +72,90 @@ const getDataFromWeatherBit = async (lat, lng, key)=>{
     }
 }
 
-const getHistoricalForecast = async (lat, lng, start_date, end_date, APIKEY) =>{
+const getCurrentWeather= async (lat, lng, key) =>{
 //if the trip is today or in the next 15 days retrieve the forecast else retrieve the historical weather data from the past
-//https://api.weatherbit.io/v2.0/history/daily?&lat=38.123&lon=-78.543&start_date=2021-04-07&end_date=2021-04-08 
-    const url ='https://api.weatherbit.io/v2.0/history/daily?&lat=${lat}&lon=${lng}&key=${key}'
-
+//https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=8a2268cadd4140388570963ddbf02afc
+    const url =`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lng}&key=${key}`;
+    try{
+        return await axios.get(url)
+                .then(res=>{
+                    console.log(res.data)
+                    return {
+                        data: res.data.data
+                    }
+                });
+    } catch(error){
+        console.log("error", error)
+    }
 }
 
+const getPixabayPicture= async (city, key) =>{
+    
+        const url =`https://pixabay.com/api/?key=${key}&q=${city}&image_type=photo`;
+        try{
+            return await axios.get(url)
+                    .then(res=>{
+                        console.log("PIXA data:"+res.data.hits[0].previewURL)//url of the first picture
+                        return {
+                            data:res.data.hits
+                        }
+                    });
+        } catch(error){
+            console.log("error", error)
+        }
+    }
+
+        
 //retrieving the user input that indicates the city
 app.post('/addCity', function(req,res){
-    let city=req.body.destination;
+    let city = req.body.destination;
     let departureDate= req.body.departureDate;
     let returnDate = req.body.returnDate;
-    //console.log(city);
-   /* newEntry = {
-        city:req.body.destination
-    }
-    projectData.newEntry = newEntry;
-    res.send(newEntry); */
-
-   //Geonames API function call 
     
-    getDataFromGeoNames(APIusername,city)
-    .then(apiResponse => {
-        //res.json(apiResponse);
+    
+         getDataFromGeoNames(APIusername,city)
+        .then(apiResponse => {
+       
         console.log("api-response long:" + apiResponse.lng + " ,lat "+ apiResponse.lat)
-   
-        if (departureDate <= today.getDate()+16){
-        getDataFromWeatherBit (apiResponse.lat,apiResponse.lng,apiKey)
-            .then (weatherApiResponse => {
-                console.log("api-response:" + weatherApiResponse.high_temp)
-                res.json(weatherApiResponse);
-        
+        projectData.apiResponse = apiResponse;
+    
+         getDataFromWeatherBit (apiResponse.lat,apiResponse.lng,apiKey)
+            .then(weatherApiResponse => {
+                console.log("api-response:" + weatherApiResponse.data[0].valid_date)
+                //res.json(weatherApiResponse);
+        projectData.weatherApiResponse = weatherApiResponse;
+                
+                
+         getPixabayPicture(city,pixabaykey)
+        .then(pixabayresponse =>{
+                console.log("pixa " + pixabayresponse)
+                 //res.send(pixabayresponse);
+        projectData.pixabayresponse = pixabayresponse;   
+                
+            })
+             res.send(projectData);
+         //   }
+          /*  else getCurrentWeather(apiResponse.lat,apiResponse.lng,apiKey)
+            .then (_currentWeatherApiResponse => {
+            console.log("api-response current weather:" + _currentweatherApiResponse.timezone)
+                res.json(_currentweatherApiResponse);
                 })
-            }
+        
+            }) */
+
+             })
         })
 
-        getHistoricalForecast()
-    
-})
+    })    //https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
 
-    //https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
-
+    /*app.post('/addCity', function(req,res){ 
+        let city = req.body.destination;    
+    getPixabayPicture(city,pixabaykey)
+    .then(pixabayresponse =>{
+        console.log(pixabayresponse)
+        res.json("pixa " + res.data[0].hits.previewURL);
+    })
+})*/
 
      /* getDataFromWeatherBit (apiResponse.lat,apiResponse.lng,apiKey).then(
         weatherApiResponse => {
