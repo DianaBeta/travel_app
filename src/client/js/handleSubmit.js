@@ -1,3 +1,4 @@
+
 function handleSubmit(event){
  event.preventDefault()
  
@@ -10,16 +11,38 @@ function handleSubmit(event){
  var one_day= 1000 * 60 *60 *24;
  let difference_ms= ((departureDate.getTime())-(today.getTime()));
 
- var  daysleft = Math.round(difference_ms/one_day);
- console.log("days left until trip::" + daysleft);
+ var  daysleft = Math.round(difference_ms/one_day) + 1;
+ if (daysleft === 0){
+ console.log("Your trip is today! better start packing!");
+}
+ else if
+   (daysleft === 1) {
+   console.log("Your trip is tomorrow! better start packing!");
+  }
+
+  else if 
+  (daysleft > 1) {
+     console.log("Your trip is in " + daysleft + "days");
+    }
+  else if 
+  (daysleft <= -1) {
+     alert("The day of departure must be  today or after");
+    }
 
 
 
 
+postData('http://localhost:8081/addCity', {destination: destination, departureDate: departureDate, returnDate: returnDate, daysleft: daysleft}).then(
+  function(res){
+        document.getElementById('city').innerHTML = destination;
+        document.getElementById('temperature').innerHTML= res.weatherApiResponse.data[daysleft].high_temp;
+        //document.getElementById('image').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
 
-postData('http://localhost:8081/addCity', {destination: destination, departureDate: departureDate, returnDate: returnDate})
+      }
+   )
+}
     
-} 
+
 
 const postData = async ( url = '', data = {})=>{
   console.log(data);

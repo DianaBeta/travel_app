@@ -95,7 +95,7 @@ const getPixabayPicture= async (city, key) =>{
         try{
             return await axios.get(url)
                     .then(res=>{
-                        console.log("PIXA data:"+res.data.hits[0].previewURL)//url of the first picture
+                        console.log("PIXA data:"+res.data.hits[0].webformatURL)//url of the first picture
                         return {
                             data:res.data.hits
                         }
@@ -111,6 +111,7 @@ app.post('/addCity', function(req,res){
     let city = req.body.destination;
     let departureDate= req.body.departureDate;
     let returnDate = req.body.returnDate;
+    let daysleft = req.body.daysleft;
     
     
          getDataFromGeoNames(APIusername,city)
@@ -121,16 +122,21 @@ app.post('/addCity', function(req,res){
     
          getDataFromWeatherBit (apiResponse.lat,apiResponse.lng,apiKey)
             .then(weatherApiResponse => {
-                console.log("api-response:" + weatherApiResponse.data[0].valid_date)
+                /*for(const[key, value] of Object.entries(data)){
+                    data[i].forEach(element => if (element === valid_date && value === departureDate){
+                    console.log(weatherApiResponse.data[0].valid_date)
+                }
+            } */
+               //console.log("high-temp:" + weatherApiResponse.data[daysleft].high_temp + "low temp::" + weatherApiResponse.data[daysleft].low_temp)
                 //res.json(weatherApiResponse);
         projectData.weatherApiResponse = weatherApiResponse;
-                
+        
                 
          getPixabayPicture(city,pixabaykey)
         .then(pixabayresponse =>{
-                console.log("pixa " + pixabayresponse)
+                console.log("pixa " + pixabayresponse.hits);
                  //res.send(pixabayresponse);
-        projectData.pixabayresponse = pixabayresponse;   
+        projectData.pixabayresponse= pixabayresponse;   
                 
             })
              res.send(projectData);
