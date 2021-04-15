@@ -11,7 +11,8 @@ function handleSubmit(event){
  var one_day= 1000 * 60 *60 *24;
  let difference_ms= ((departureDate.getTime())-(today.getTime()));
 
- var  daysleft = Math.round(difference_ms/one_day) + 1;
+ var  daysleft = Math.round(difference_ms/one_day);
+
  if (daysleft === 0){
  console.log("Your trip is today! better start packing!");
 }
@@ -40,8 +41,38 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
 
       }
    )
+
+   post('http://localhost:8081/addImage',{destination:destination})
+.then(function (res){
+  document.getElementById('image').setAttribute('src', res.image);
+    }
+
+  )
+
 }
+
+
     
+const post = async ( url = '', data = {})=>{
+  console.log(data);
+    const response = await fetch(url, {
+    method: 'POST', 
+    credentials: 'same-origin',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+   // Body data type must match "Content-Type" header        
+    body: JSON.stringify(data), 
+  });
+
+    try {
+      const image = await response.json();
+      console.log(image);//image
+      return image;
+    }catch(error) {
+      console.log("error", error);
+    }
+  }
 
 
 const postData = async ( url = '', data = {})=>{

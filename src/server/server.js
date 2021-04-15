@@ -40,6 +40,7 @@ app.listen(8081, function () {
 
 //axions instead of fetch
 const axios = require('axios');
+const { response } = require("express");
 //post route
 //Geonames API function definition
 const getDataFromGeoNames= async (username,city)=>{
@@ -89,17 +90,12 @@ const getCurrentWeather= async (lat, lng, key) =>{
     }
 }
 
-const getPixabayPicture= async (city, key) =>{
-    
-        const url =`https://pixabay.com/api/?key=${key}&q=${city}&image_type=photo`;
+    const getPixabayPicture = async (city, key)=>{
+        const res = await fetch(`https://pixabay.com/api/?key=${key}&q=${city}&image_type=photo`)
         try{
-            return await axios.get(url)
-                    .then(res=>{
-                        console.log("PIXA data:"+res.data.hits[0].webformatURL)//url of the first picture
-                        return {
-                            data:res.data.hits
-                        }
-                    });
+            const data=await res.json();
+            console.log(data.hits[1].webformatURL)
+            return data.hits[1].webformatURL;
         } catch(error){
             console.log("error", error)
         }
@@ -131,14 +127,30 @@ app.post('/addCity', function(req,res){
                 //res.json(weatherApiResponse);
         projectData.weatherApiResponse = weatherApiResponse;
         
-                
-         getPixabayPicture(city,pixabaykey)
+        app.post('/addImage', async(req,res)=>{
+            const city = req.body.destination;
+            const img = await getPixabayPicture(city,pixabaykey);
+            res.send({
+                image: img
+            });
+            console.log(city);
+        })
+        /* getPixabayPicture(city,pixabaykey)
         .then(pixabayresponse =>{
-                console.log("pixa " + pixabayresponse.hits);
+            if (parseInt(pixabayresponse.data.totalHits) > 0){
+                 $.each(data.hits, function (i,hits){console.log(hit.pageURL); });
+            {
+                console.log('no hits');
+              getPixabayPicture("travel",pixabaykey)
+              .then(pixabaynohitsresponse =>{
+                  projectData.pixabaynohitsresponse = pixabaynohitsresponse;
+              })
+            }
+        
                  //res.send(pixabayresponse);
-        projectData.pixabayresponse= pixabayresponse;   
+        projectData.pixabayresponse = pixabayresponse;   
                 
-            })
+            })*/
              res.send(projectData);
          //   }
           /*  else getCurrentWeather(apiResponse.lat,apiResponse.lng,apiKey)
@@ -152,7 +164,18 @@ app.post('/addCity', function(req,res){
              })
         })
 
-    })    //https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
+    })   
+    
+   app.post('/addImage', async(req,res)=>{
+       const city = req.body.destination;
+       const img = await getPixabayPicture(city,pixabaykey);
+       res.send({
+           image: img
+       });
+       console.log(city);
+   })
+    
+    //https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
 
     /*app.post('/addCity', function(req,res){ 
         let city = req.body.destination;    
