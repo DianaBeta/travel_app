@@ -6,6 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+
 module.exports = {
     entry: './src/client/index.js',
     mode: 'production',
@@ -27,6 +28,7 @@ module.exports = {
             test: /\.scss$/,
             use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
             },
+        
             {
                 test: /\.(png|jpe?g|gif)$/i,
                 use: [

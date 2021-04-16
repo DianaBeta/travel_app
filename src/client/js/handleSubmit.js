@@ -10,25 +10,14 @@ function handleSubmit(event){
  
  var one_day= 1000 * 60 *60 *24;
  let difference_ms= ((departureDate.getTime())-(today.getTime()));
+ console.log("difference ms:"+ difference_ms);
 
  var  daysleft = Math.round(difference_ms/one_day);
+ daysleft = daysleft + 2;
 
- if (daysleft === 0){
- console.log("Your trip is today! better start packing!");
-}
- else if
-   (daysleft === 1) {
-   console.log("Your trip is tomorrow! better start packing!");
-  }
 
-  else if 
-  (daysleft > 1) {
-     console.log("Your trip is in " + daysleft + "days");
-    }
-  else if 
-  (daysleft <= -1) {
-     alert("The day of departure must be  today or after");
-    }
+
+//Todo: if the trip is after 16 days alert
 
 
 
@@ -36,7 +25,29 @@ function handleSubmit(event){
 postData('http://localhost:8081/addCity', {destination: destination, departureDate: departureDate, returnDate: returnDate, daysleft: daysleft}).then(
   function(res){
         document.getElementById('city').innerHTML = destination;
-        document.getElementById('temperature').innerHTML= res.weatherApiResponse.data[daysleft].high_temp;
+        if (daysleft === 0){
+          document.getElementById('information').innerHTML= "Your trip is today! better start packing!";
+         }
+          else if
+            (daysleft === 1) {
+              document.getElementById('information').innerHTML= "Your trip is tomorrow! better start packing!";
+           }
+         
+           else if 
+           (daysleft > 1) {
+            document.getElementById('information').innerHTML= "Your trip is in " + daysleft + " days";
+             }
+           else if 
+           (daysleft <= -1) {
+              alert("The day of departure must be  today or after");
+             }
+        
+        
+        
+        "Your trip is in "+ daysleft + " days";
+        document.getElementById('temperature').innerHTML= res.weatherApiResponse.data[daysleft].temp + "°C";
+        document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
+        document.getElementById('save').innerHTML= "Save trip";
         //document.getElementById('image').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
 
       }

@@ -12,7 +12,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "google-fonts-webpack-plugin": "^0.4.4",
+    "js-datepicker": "^5.18.0",
     "node-fetch": "^2.6.1",
     "sass": "^1.32.8",
     "webpack": "^4.46.0",

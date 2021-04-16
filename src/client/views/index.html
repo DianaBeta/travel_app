@@ -15,11 +15,11 @@
                     <div class = "">
                         Holiday Destination
                     </div>
-                    <input id="destination" type="text" name="input" value="" onblur="onBlur()" placeholder="Hawaii!">
+                    <input id="destination" type="text" name="input" input = required value="" onblur="onBlur()" placeholder="Hawaii!">
                     Departure date
-                    <input id="date" type="date" name="date" value="" onblur="onBlur()" placeholder="dd.mm.yyyy">
+                    <input id="date" type="date" name="date" input = required value="" onblur="onBlur()" placeholder="dd.mm.yyyy required">
                     Return date
-                    <input id="return-date" type="date" name="date" value="" onblur="onBlur()" placeholder="dd.mm.yyyy">
+                    <input id="return-date" type="date" name="date" required value="" onblur="onBlur()" placeholder="dd.mm.yyyy">
                     <input id= "submit" type="submit" name="" value="Let's go!" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             </section>
@@ -30,8 +30,10 @@
                     <div id="city"></div>
                     <div id="information"></div>
                     <div id="temperature"></div>
+                    <div id="description"></div>
+                    <div id = "save"></div>
                 </div>
-                <div class = "save">Save trip</div>
+                
             </section>
 
             <section>

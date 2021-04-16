@@ -93,9 +93,14 @@ const getCurrentWeather= async (lat, lng, key) =>{
     const getPixabayPicture = async (city, key)=>{
         const res = await fetch(`https://pixabay.com/api/?key=${key}&q=${city}&image_type=photo`)
         try{
-            const data=await res.json();
-            console.log(data.hits[1].webformatURL)
-            return data.hits[1].webformatURL;
+            let data=await res.json();
+            //if pixabay does not find pictures that match the city show a picture related to travel
+            if(data.hits[0] == undefined || null){
+                return "https://pixabay.com/get/ge6b7dc54961e11a069a7d7c30314a9659b42b1705f84c4f3353f38a65c425fc2fb739e00cd636fbfed397e169b5ab250bbfd00a6edf05d7d9d7f0999812f895c_640.jpg";
+            }
+            const first_image = data.hits[0].webformatURL;
+            console.log(first_image);
+            return first_image;
         } catch(error){
             console.log("error", error)
         }
@@ -127,14 +132,14 @@ app.post('/addCity', function(req,res){
                 //res.json(weatherApiResponse);
         projectData.weatherApiResponse = weatherApiResponse;
         
-        app.post('/addImage', async(req,res)=>{
+       /* app.post('/addImage', async(req,res)=>{
             const city = req.body.destination;
             const img = await getPixabayPicture(city,pixabaykey);
             res.send({
                 image: img
             });
             console.log(city);
-        })
+        }) */
         /* getPixabayPicture(city,pixabaykey)
         .then(pixabayresponse =>{
             if (parseInt(pixabayresponse.data.totalHits) > 0){
@@ -169,6 +174,7 @@ app.post('/addCity', function(req,res){
    app.post('/addImage', async(req,res)=>{
        const city = req.body.destination;
        const img = await getPixabayPicture(city,pixabaykey);
+       console.log(img);
        res.send({
            image: img
        });
