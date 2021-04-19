@@ -2,36 +2,68 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Travel app</title>
     </head>
 
     <body>
-        <header>
-            <h1>Find your next adventure</h1>
+        <header class = "col row text-center">
+            
+                <h1>Find your next adventure</h1>
+            
+            
         </header>
-        <main>
-        <section class = card>
-                <form class="destination" onsubmit="return Client.handleSubmit(event)">
-                    <div class = "">
-                        Holiday Destination
+        <main class = " row col align-items-start">
+        <section class = " row card container">
+            <form class = "destination needs-validation" onsubmit= "return Client.handleSubmit(event)">
+            <div class="row">
+                    <div class="col">
+                        <label for="destination" class="form-label">Holiday destination</label>
+                        <input type="text" class="form-control was-validated" id="destination" input = required>
+                        <div class = "valid-feedback">Valid city</div>
+                        <div class="invalid-feedback">Please provide a valid city</div>
                     </div>
-                    <input id="destination" type="text" name="input" input = required value="" onblur="onBlur()" placeholder="Hawaii!">
-                    Departure date
-                    <input id="date" type="date" name="date" input = required value="" onblur="onBlur()" placeholder="dd.mm.yyyy required">
-                    Return date
-                    <input id="return-date" type="date" name="date" required value="" onblur="onBlur()" placeholder="dd.mm.yyyy">
-                    <input id= "submit" type="submit" name="" value="Let's go!" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
-                </form>
+                    <div class="col">
+                        <label for="date" class="form-label">Departure date</label>
+                        <input type="date" id = date class="form-control" input= "required">
+                    </div>
+                    <div class="col align-items-center">
+            
+                        <button type="submit" class="btn btn-info" id= submit onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">Let's go</button>
+                      
+                    </div>
+            </div>
+                    </form>
+                </div>
+            </div>
             </section>
 
+             <!--<form class="destination" onsubmit="return Client.handleSubmit(event)">
+                <div class = "">
+                    Holiday Destination
+                </div>
+                <input id="destination" type="text" name="input" input = required value="" onblur="onBlur()" placeholder="Hawaii!">
+                Departure date
+                <input id="date" type="date" name="date" input = required value="" onblur="onBlur()" placeholder="dd.mm.yyyy required">
+                Return date
+                <input id="return-date" type="date" name="date" required value="" onblur="onBlur()" placeholder="dd.mm.yyyy">
+                <input id= "submit" type="submit" name="" value="Let's go!" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+            </form> 
+        </div> -->
+
             <section>
-                <div class = results> 
-                    <img id= "image" scr="./my-image.png"></div>
-                    <div id="city"></div>
-                    <div id="information"></div>
-                    <div id="temperature"></div>
-                    <div id="description"></div>
-                    <div id = "save"></div>
+                <div class =  "card row results container"> 
+                    <div class = "row container">
+                        <img id= "image" scr="./my-image.png">
+                    </div>
+                    <div class = "row description container">
+                        <div id="city"></div>
+                        <div id="information"></div>
+                        <div id="temperature"></div>
+                        <div id="description"></div>
+                        <div id = "save"></div>
+                    </div>
+                    
                 </div>
                 
             </section>

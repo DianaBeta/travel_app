@@ -3,11 +3,12 @@ header{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border: solid 2px red;
+    //border: solid 2px red;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../media/background.jpg);
-    height: 60%;
+    //height: 90%;
     color:white;
-    grid-area: h;
-    padding:8vh;
+    //grid-area: h;
+    padding:15vh;
+    z-index: -1;
 }
 

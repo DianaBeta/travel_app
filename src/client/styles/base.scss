@@ -8,9 +8,34 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
     display: grid;
-    grid-template-areas: "h h h h h h"
+    /*grid-template-areas: "h h h h h h"
                          "f f f f f f"
                          "r r r r r r"
-                         "ft ft ft ft ft ft";
+                         "ft ft ft ft ft ft";*/
 
+}
+
+.row{
+    //border: solid 2px green;
+}
+
+.col{
+    //border: solid 2px blue;
+}
+
+.results{
+    display: grid;
+    grid-template-areas: "i r r r"
+                         "i r r r"
+                         "i r r r";
+}
+
+.image{
+    grid-area: i;
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+    grid-area: d;
 }

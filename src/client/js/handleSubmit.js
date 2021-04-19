@@ -4,7 +4,7 @@ function handleSubmit(event){
  
  let destination = document.getElementById('destination').value;
  let departureDate = new Date(document.getElementById('date').value);
- let returnDate = new Date(document.getElementById('return-date').value);
+ //let returnDate = new Date(document.getElementById('return-date').value);
  let today = new Date(); 
  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();     
  
@@ -13,7 +13,7 @@ function handleSubmit(event){
  console.log("difference ms:"+ difference_ms);
 
  var  daysleft = Math.round(difference_ms/one_day);
- daysleft = daysleft + 2;
+ daysleft = daysleft + 1;
 
 
 
@@ -22,9 +22,11 @@ function handleSubmit(event){
 
 
 
-postData('http://localhost:8081/addCity', {destination: destination, departureDate: departureDate, returnDate: returnDate, daysleft: daysleft}).then(
+postData('http://localhost:8081/addCity', {destination: destination, departureDate: departureDate, daysleft: daysleft}).then(
   function(res){
-        document.getElementById('city').innerHTML = destination;
+  
+
+       
         if (daysleft === 0){
           document.getElementById('information').innerHTML= "Your trip is today! better start packing!";
          }
@@ -45,6 +47,7 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
         
         
         "Your trip is in "+ daysleft + " days";
+        document.getElementById('city').innerHTML = destination;
         document.getElementById('temperature').innerHTML= res.weatherApiResponse.data[daysleft].temp + "°C";
         document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
         document.getElementById('save').innerHTML= "Save trip";

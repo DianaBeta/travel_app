@@ -87,6 +87,7 @@ const getCurrentWeather= async (lat, lng, key) =>{
                 });
     } catch(error){
         console.log("error", error)
+        
     }
 }
 
@@ -96,7 +97,7 @@ const getCurrentWeather= async (lat, lng, key) =>{
             let data=await res.json();
             //if pixabay does not find pictures that match the city show a picture related to travel
             if(data.hits[0] == undefined || null){
-                return "https://pixabay.com/get/ge6b7dc54961e11a069a7d7c30314a9659b42b1705f84c4f3353f38a65c425fc2fb739e00cd636fbfed397e169b5ab250bbfd00a6edf05d7d9d7f0999812f895c_640.jpg";
+                return getPixabayPicture ("travel", key);
             }
             const first_image = data.hits[0].webformatURL;
             console.log(first_image);
@@ -114,10 +115,8 @@ app.post('/addCity', function(req,res){
     let returnDate = req.body.returnDate;
     let daysleft = req.body.daysleft;
     
-    
          getDataFromGeoNames(APIusername,city)
         .then(apiResponse => {
-       
         console.log("api-response long:" + apiResponse.lng + " ,lat "+ apiResponse.lat)
         projectData.apiResponse = apiResponse;
     
