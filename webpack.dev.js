@@ -22,16 +22,16 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
-                test: /\.scss$/,
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-            },
-            {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
                   {
                     loader: 'file-loader',
                   },
                 ],
+              },
+              {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
               },
             ],
           },
@@ -50,6 +50,7 @@ module.exports = {
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
+        
 
     ]
 }

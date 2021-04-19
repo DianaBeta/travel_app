@@ -1,5 +1,16 @@
-@import '~js-datepicker/src/datepicker';
+@import "~bootstrap/scss/bootstrap";
+@import "custom";
+@import "footer";
+@import "header";
+@import "form";
+@import "resets";
+
 body{
     font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-areas: "h h h h h h"
+                         "f f f f f f"
+                         "r r r r r r"
+                         "ft ft ft ft ft ft";
 
 }

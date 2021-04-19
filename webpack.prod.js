@@ -25,10 +25,32 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
-            test: /\.scss$/,
-            use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+                test: /\.(scss)$/,
+                use: [MiniCssExtractPlugin.loader, {
+                  loader: 'css-loader',
+                  options: {
+                    importLoaders: 1,
+                  },
+                },
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    // `postcssOptions` is needed for postcss 8.x;
+                    // if you use postcss 7.x skip the key
+                    postcssOptions: {
+                      // postcss plugins, can be exported to postcss.config.js
+                      plugins: function () {
+                        return [
+                          require('autoprefixer')
+                        ];
+                      }
+                }
+              }
             },
-        
+                {
+                  loader: 'sass-loader',
+                }],
+              },
             {
                 test: /\.(png|jpe?g|gif)$/i,
                 use: [
@@ -37,8 +59,8 @@ module.exports = {
                   },
                 ],
               },
-            ],
-          },
+            ]
+        },
     plugins: [
        new HtmlWebPackPlugin({
             template: "./src/client/views/index.html",
@@ -57,3 +79,4 @@ module.exports = {
         })
     ]
 }
+
