@@ -3,6 +3,11 @@
 import datepicker from 'js-datepicker'
 import 'bootstrap';
 import './styles/base.scss'
+// Loading weather icons
+function importAll(r) {
+    return r.keys().map(r);
+  }
+  importAll(require.context("./media/icons", false, /\.(svg)$/));
 
 import { handleSubmit } from './js/handleSubmit'
 

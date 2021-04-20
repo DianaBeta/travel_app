@@ -47,18 +47,23 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
         
         
         "Your trip is in "+ daysleft + " days";
-        document.getElementById('city').innerHTML = destination;
+        document.getElementById('city').innerHTML = destination.bold();
+        document.getElementById("city").style.fontSize = "25px";
         document.getElementById('temperature').innerHTML= res.weatherApiResponse.data[daysleft].temp + "°C";
         document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
+        document.getElementById('icon').innerHTML= `<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`;
         document.getElementById('save').innerHTML= "Save trip";
         //document.getElementById('image').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
-
+        //`<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=50px width=50px>
       }
    )
 
    post('http://localhost:8081/addImage',{destination:destination})
 .then(function (res){
   document.getElementById('image').setAttribute('src', res.image);
+  document.getElementById('image').style.width = "400px";
+  document.getElementById('image').style.borderRadius = "2px"
+
     }
 
   )

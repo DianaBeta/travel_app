@@ -12,7 +12,7 @@ body{
                          "f f f f f f"
                          "r r r r r r"
                          "ft ft ft ft ft ft";*/
-
+    background-color: #f1f5f8;
 }
 
 .row{
@@ -24,18 +24,29 @@ body{
 }
 
 .results{
-    display: grid;
+    /*display: grid;
     grid-template-areas: "i r r r"
                          "i r r r"
-                         "i r r r";
+                         "i r r r";*/
 }
 
 .image{
-    grid-area: i;
+    //grid-area: i;
+    border-radius: 4px;
+    size: 10px;
+
 }
 
-.description{
-    display: flex;
+.description{/*
+    /*display: flex;
     flex-direction: column;
-    grid-area: d;
+    grid-area: d;*/
+    //padding: 6vh;
+}
+.row-sm{
+    border: solid blue 2px;
+}
+
+#city{
+    color:#102942;
 }

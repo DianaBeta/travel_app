@@ -6,37 +6,41 @@
         <title>Travel app</title>
     </head>
 
-    <body>
-        <header class = "col row text-center">
+    <body class =>
+        <header class = "jumbotron text-center">
             
                 <h1>Find your next adventure</h1>
             
             
         </header>
-        <main class = " row col align-items-start">
-        <section class = " row card container">
-            <form class = "destination needs-validation" onsubmit= "return Client.handleSubmit(event)">
-            <div class="row">
-                    <div class="col">
+        <main class = "container">
+           <section class = "card">
+            <form class = " card-body row destination needs-validation" onsubmit= "return Client.handleSubmit(event)">
+                    <div class="col-sm-5">
+                    
                         <label for="destination" class="form-label">Holiday destination</label>
-                        <input type="text" class="form-control was-validated" id="destination" input = required>
-                        <div class = "valid-feedback">Valid city</div>
-                        <div class="invalid-feedback">Please provide a valid city</div>
+                    
+                    
+                        <input type="text" class="form-control was-validated" id="destination" input = required placeholder="City">
                     </div>
-                    <div class="col">
+                    
+                    <div class="col-sm-5">
+                       
                         <label for="date" class="form-label">Departure date</label>
+                
+                    
                         <input type="date" id = date class="form-control" input= "required">
-                    </div>
-                    <div class="col align-items-center">
-            
+                        </div>
+                    
+                    <div class="col-sm-2">
+                        
                         <button type="submit" class="btn btn-info" id= submit onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">Let's go</button>
                       
                     </div>
-            </div>
-                    </form>
-                </div>
-            </div>
-            </section>
+                   
+                </form>
+            </section> 
+          
 
              <!--<form class="destination" onsubmit="return Client.handleSubmit(event)">
                 <div class = "">
@@ -52,19 +56,36 @@
         </div> -->
 
             <section>
-                <div class =  "card row results container"> 
-                    <div class = "row container">
-                        <img id= "image" scr="./my-image.png">
-                    </div>
-                    <div class = "row description container">
-                        <div id="city"></div>
-                        <div id="information"></div>
-                        <div id="temperature"></div>
-                        <div id="description"></div>
-                        <div id = "save"></div>
-                    </div>
+                <div class =  "results container"> 
+                    <div class = "card">
                     
+                
+                    <div class = "row card-body">
+                        <img id= "image" scr="./my-image.png">
+                    <div class = "col  description">
+
+                    <div class = "card-title col-12">
+                        <div id="city" class= "row-sm"></div>
+                        <div id="information" class= row-sm></div>
+                    </div>
+                    <div class = "card-text row-sm-4">
+                        <div class = "col-sm">
+                        <div id = "icon"> </div>
+                        </div>
+                        <div class = "col-sm">
+                        <div id="temperature" class= row-sm></div>
+                        <div id="description" class= row-sm></div>
+                       </div>
+                    
+                    </div>
+                   
+                    </div>
+                
+                    </div>
+                    <div id = "save" class=  "row-sm card-footer "></div>
                 </div>
+                    
+                
                 
             </section>
 
