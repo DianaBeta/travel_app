@@ -48,8 +48,9 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
         
         "Your trip is in "+ daysleft + " days";
         document.getElementById('city').innerHTML = destination.bold();
-        document.getElementById("city").style.fontSize = "25px";
+        document.getElementById('city').style.fontSize = "30px";
         document.getElementById('temperature').innerHTML= res.weatherApiResponse.data[daysleft].temp + "°C";
+        document.getElementById('temperature').style.fontSize = "25px";
         document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
         document.getElementById('icon').innerHTML= `<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`;
         document.getElementById('save').innerHTML= "Save trip";

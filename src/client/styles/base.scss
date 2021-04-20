@@ -42,11 +42,29 @@ body{
     flex-direction: column;
     grid-area: d;*/
     //padding: 6vh;
+    font-size: 20px;
+    color:#102942;
 }
-.row-sm{
-    border: solid blue 2px;
+.card-text{
+    display:flex;
+    flex-direction: row;
+}
+.card-title{
+    border-bottom: 1px solid rgba(211, 209, 209, 0.705);
+    margin-bottom: 4vh;
+    //border: solid 2px purple;
+}
+.temperature{
+    //margin:2vh;
+    font-size: 20px;
+    color:#66819b;
 }
 
 #city{
     color:#102942;
+}
+.form-label{
+
+    color:#102942;
+
 }
