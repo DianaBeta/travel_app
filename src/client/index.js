@@ -8,7 +8,7 @@ function importAll(r) {
     return r.keys().map(r);
   }
   importAll(require.context("./media/icons", false, /\.(svg)$/));
-
+import './media/img/heart.png';
 import { handleSubmit } from './js/handleSubmit'
 
 export {

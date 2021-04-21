@@ -36,15 +36,25 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
            }
          
            else if 
-           (daysleft > 1) {
+           (daysleft > 1 && daysleft < 16) {
             document.getElementById('information').innerHTML= "Your trip is in " + daysleft + " days";
              }
            else if 
            (daysleft <= -1) {
-              alert("The day of departure must be  today or after");
+            document.querySelector(".beforetoday").classList.remove("displaynone");
+            
              }
+
+            else if (daysleft > 16) {
+              
+              document.querySelector(".toofar").classList.remove("displaynone");
+           
+          
+              }
         
-        
+
+           
+           
         
         "Your trip is in "+ daysleft + " days";
         document.getElementById('city').innerHTML = destination.bold();
@@ -53,9 +63,11 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
         document.getElementById('temperature').style.fontSize = "25px";
         document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
         document.getElementById('icon').innerHTML= `<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`;
-        document.getElementById('save').innerHTML= "Save trip";
+        document.getElementById('save').innerHTML= "Save trip " +`<img src="src/client/media/img/heart.png" width=15px height= 15px >`;
         //document.getElementById('image').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
         //`<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=50px width=50px>
+        const resultsHolder= document.querySelector(".results");
+       resultsHolder.classList.remove("invisible");
       }
    )
 

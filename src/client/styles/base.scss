@@ -43,7 +43,7 @@ body{
     grid-area: d;*/
     //padding: 6vh;
     font-size: 20px;
-    color:#102942;
+    color:#66819b;
 }
 .card-text{
     display:flex;
@@ -57,7 +57,17 @@ body{
 .temperature{
     //margin:2vh;
     font-size: 20px;
-    color:#66819b;
+    color:#102942;
+    }
+     
+
+#icon{
+    margin-left:10vh;
+    //border: solid 2px green;
+    padding-right: 0vh;
+}
+.form-control{
+    background-color: #f6f6f6;
 }
 
 #city{
@@ -66,5 +76,22 @@ body{
 .form-label{
 
     color:#102942;
-
 }
+
+#save{
+    color:#66819b;
+    font-weight: 700;
+    font-size: 15px;
+}
+.invisible{
+    visibility: hidden;
+}
+
+.visible{
+    visibility: visible;
+}
+
+.displaynone{
+    display:none;
+}
+

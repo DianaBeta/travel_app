@@ -1,21 +1,9 @@
 
-header{
-    /*display: flex;
-    flex-direction: row;
-    justify-content: center;
-    //border: solid 2px red;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../media/background.jpg);
-    //height: 90%;
-    color:white;
-    //grid-area: h;
-    padding:15vh;
-    z-index: -1; */
-}
-
 .jumbotron{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../media/background.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url(../media/background.jpg);
     background-size: cover;
     color: white;
     border-radius: 0px;
+    font-size: 750;
 }
 

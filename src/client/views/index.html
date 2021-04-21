@@ -18,7 +18,7 @@
             <form class = " card-body row destination needs-validation" onsubmit= "return Client.handleSubmit(event)">
                     <div class="col-sm-5">
                     
-                        <label for="destination" class="form-label">Holiday destination</label>
+                        <label for="destination" class="form-label">Trip to</label>
                     
                     
                         <input type="text" class="form-control was-validated" id="destination" input = required placeholder="City">
@@ -26,11 +26,25 @@
                     
                     <div class="col-sm-5">
                        
-                        <label for="date" class="form-label">Departure date</label>
-                
-                    
+                        <label for="date" class="form-label">Departing date </label>   
                         <input type="date" id = date class="form-control" input= "required">
+                        <small id="HelpBlock" class="form-text text-muted invisible">
+                            The date should be max. 15 days from today.
+                          </small>
+                          <div class="alert alert-warning alert-dismissible fade show beforetoday displaynone" role="alert">
+                            The date cannot be before today!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        <div class="alert alert-warning alert-dismissible fade show displaynone toofar" role="alert">
+                             The date should be max. 15 days from today.
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
                         </div>
+                          
+                     </div>
                     
                     <div class="col-sm-2">
                         
@@ -56,35 +70,33 @@
         </div> -->
 
             <section>
-                <div class =  "results container"> 
+                <div class =  "results container invisible"> 
                     <div class = "card">
-                    
-                
-                    <div class = "row card-body">
-                        <img id= "image" scr="./my-image.png">
-                    <div class = "col  description">
+                        <div class = "row card-body">
+                            <img id= "image" scr="./my-image.png">
+                            <div class = "col  description">
 
-                    <div class = "card-title col-12">
-                        <div id="city" class= "row-sm"></div>
-                        <div id="information" class= row-sm></div>
-                    </div>
-                    <div class = "card-text row-sm-4">
-                        <div class = "col-sm">
-                        <div id = "icon"> </div>
-                        </div>
-                        <div class = "col-sm">
-                        <div id="temperature" class= "row-sm temperature" ></div>
-                        <div id="description" class= "row-sm description"></div>
-                       </div>
+                                <div class = "card-title col-12">
+                                    <div id="city" class= "row-sm"></div>
+                                    <div id="information" class= row-sm></div>
+                                </div>
+                                <div class = "card-text row-sm-4">
+                                    <div class = "col-sm">
+                                        <div id = "icon"> </div>
+                                    </div>
+                                    <div class = "col-sm">
+                                        <div id="temperature" class= "row-sm temperature" ></div>
+                                        <div id="description" class= "row-sm description"></div>
+                                    </div>
+                                
+                                </div>
+                        
+                            </div>
                     
+                        </div>
+                        <div id = "save" class=  "row-sm card-footer">  </div>
                     </div>
-                   
-                    </div>
-                
-                    </div>
-                    <div id = "save" class=  "row-sm card-footer "></div>
                 </div>
-            </div>
                     
                 
                 
@@ -95,10 +107,14 @@
             </section>
         
         </main>
+        <div class = container-fluid>
+            <footer class = footer col-xs-12 text-center> 
+                <p>Diana Betancourt all rights reserved-Images retrieved from
+                    <a href="www.pixabay.com"> Pixabay</a>
+                </p>
+            </footer>
+        </div>
 
-        <footer>
-            <p>By Diana Betancourt all rights reserved</p>
-        </footer>
          <script>
         // Check that service workers are supported
         /*if ('serviceWorker' in navigator) {
