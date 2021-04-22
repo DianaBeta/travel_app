@@ -1,4 +1,4 @@
-
+const tripData = [];
 function handleSubmit(event){
  event.preventDefault()
  
@@ -51,11 +51,7 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
            
           
               }
-        
-
            
-           
-        
         "Your trip is in "+ daysleft + " days";
         document.getElementById('city').innerHTML = destination.bold();
         document.getElementById('city').style.fontSize = "30px";
@@ -63,12 +59,18 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
         document.getElementById('temperature').style.fontSize = "25px";
         document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
         document.getElementById('icon').innerHTML= `<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`;
-        document.getElementById('save').innerHTML= "Save trip " +`<img src="src/client/media/img/heart.png" width=15px height= 15px >`;
+        document.getElementById('save').innerHTML= `<img src="src/client/media/img/heart.png " width=15px height= 15px >`+" Save trip ";
         //document.getElementById('image').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
         //`<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=50px width=50px>
         const resultsHolder= document.querySelector(".results");
        resultsHolder.classList.remove("invisible");
-      }
+
+      tripData.push(destination);
+      tripData.push(res.weatherApiResponse.data[daysleft].temp + "°C");
+      tripData.push(res.weatherApiResponse.data[daysleft].weather.description);
+      tripData.push(`<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`);
+      console.log("trip-data"+tripData);
+          }
    )
 
    post('http://localhost:8081/addImage',{destination:destination})
@@ -76,13 +78,34 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
   document.getElementById('image').setAttribute('src', res.image);
   document.getElementById('image').style.width = "400px";
   document.getElementById('image').style.borderRadius = "2px"
-
+  
+  tripData.push(res.image);
     }
 
   )
-
+  
 }
 
+function addToPastTrip(){
+  /*const savedTrips = document.querySelector('.past-trips');
+  savedTrips.classList.add('card');
+  savedTrips.classList.add('col');
+  const newdiv = document.createElement('div');
+  savedTrips.appendChild(newdiv);
+  newdiv.classList.add('card-body');*/
+const savedTrips = document.querySelector('.past-trips');
+savedTrips.classList.remove('displaynone');
+document.getElementById('city2').innerHTML = tripData[1];
+document.getElementById('city2').style.fontSize = "30px";
+document.getElementById('temperature2').innerHTML= tripData[2];
+document.getElementById('temperature2').style.fontSize = "25px";
+document.getElementById('description2').innerHTML= tripData[3];
+document.getElementById('icon2').innerHTML= tripData[4];
+document.getElementById('image2').setAttribute('src', tripData[0]);
+document.getElementById('image2').style.width = "300px";
+//document.getElementById('save2').innerHTML= `<img src="src/client/media/img/heart.png " width=15px height= 15px >`+" Save trip ";
+
+}
 
     
 const post = async ( url = '', data = {})=>{
@@ -129,6 +152,9 @@ const postData = async ( url = '', data = {})=>{
   }
 
 export { handleSubmit } 
+ 
+export{ addToPastTrip}
+
 
 //weatherbit api: iterate through data object and iterate into each of the 16 arrays comparing if the departure date and the valid date match. 
 //If yes then return the low and max_temp.

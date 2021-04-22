@@ -6,10 +6,10 @@
         <title>Travel app</title>
     </head>
 
-    <body class =>
+    <body>
         <header class = "jumbotron text-center">
             
-                <h1>Find your next adventure</h1>
+                <h1>Adventure planner</h1>
             
             
         </header>
@@ -26,7 +26,7 @@
                     
                     <div class="col-sm-5">
                        
-                        <label for="date" class="form-label">Departing date </label>   
+                        <label for="date" class="form-label">Departure date </label>   
                         <input type="date" id = date class="form-control" input= "required">
                         <small id="HelpBlock" class="form-text text-muted invisible">
                             The date should be max. 15 days from today.
@@ -94,26 +94,43 @@
                             </div>
                     
                         </div>
-                        <div id = "save" class=  "row-sm card-footer">  </div>
+                        <div id = "save" onclick="return Client.addToPastTrip()" class= " btn btn-light row-sm card-footer">  </div>
                     </div>
                 </div>
-                    
-                
-                
+                           
             </section>
 
             <section>
-                <div id= "past trips"></div>
+                <div id= "past-trips" class = "past-trips displaynone">
+                    <div class = "card col-4">
+                        <div class = " card-body">
+                            
+                                <img id= "image2" scr="./my-image.png">
+                                <div class = "card-title col-12">
+                                    <div id="city2" ></div>
+                                </div>
+                                    <div class = "col-sm">
+                                        <div id = "icon2"> </div>
+                                    </div>
+                                    <div class = "col-sm">
+                                        <div id="temperature2" ></div>
+                                        <div id="description2"></div>
+                                    </div>
+                        </div>
+                    </div>
+                        
+                </div>
             </section>
-        
+            <div class = "push"></div>
         </main>
-        <div class = container-fluid>
-            <footer class = footer col-xs-12 text-center> 
-                <p>Diana Betancourt all rights reserved-Images retrieved from
-                    <a href="www.pixabay.com"> Pixabay</a>
-                </p>
+            
+            <footer class = "footer text-center text-lg-start fixed-bottom"> 
+                <div class = "text-center p-3"> <p>Diana Betancourt 2021 - Images retrieved from
+                        <a href="www.pixabay.com"> Pixabay</a>
+                    </p>
+                </div>
             </footer>
-        </div>
+        
 
          <script>
         // Check that service workers are supported
