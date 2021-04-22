@@ -27,7 +27,7 @@ module.exports = {
                   {
                     loader: 'file-loader',
                     options:{
-                      name: '[name].[ext]',//remove[path]
+                      name: '[name].[ext]',
                       outputPath: 'assets/icons',
                     }
                   },
