@@ -1,14 +1,21 @@
 .footer{
-    position: absolute;
-    bottom: 0;
+    
+    //display: flex;
+    //flex-direction: row;
+    //flex-shrink: 0;
+    //bottom: 0;
     //width: 100%;
-    //height: 2.5rem; 
-    background-color:#102942;
-    color: white;
-    padding-left:5vh;
-    margin: 0 auto !important;
-    text-align: center !important;
-    width: 100% !important;
-    height: 40px;
-    position: absolute;
+    //height: 2.5rem; */ 
+    background-color:#00667660;
+    color: #006676;
+    //margin-top: 50px;
+    //text-align: center !important;
+    //width: 100% !important;
+    //height: 40px;
+    //position: sticky; 
+    a{ color: white;}
+}
+
+.footer,.push{
+    height: 60px;
 }
