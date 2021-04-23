@@ -1,4 +1,4 @@
-const tripData = [];
+const tripData = {};
 function handleSubmit(event){
  event.preventDefault()
  
@@ -25,8 +25,6 @@ function handleSubmit(event){
 postData('http://localhost:8081/addCity', {destination: destination, departureDate: departureDate, daysleft: daysleft}).then(
   function(res){
   
-
-       
         if (daysleft === 0){
           document.getElementById('information').innerHTML= "Your trip is today! better start packing!";
          }
@@ -55,6 +53,7 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
         "Your trip is in "+ daysleft + " days";
         document.getElementById('city').innerHTML = destination.bold();
         document.getElementById('city').style.fontSize = "30px";
+        document.getElementById('country').innerHTML= res.apiResponse.countryName;
         document.getElementById('temperature').innerHTML= res.weatherApiResponse.data[daysleft].temp + "°C";
         document.getElementById('temperature').style.fontSize = "25px";
         document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
@@ -65,21 +64,21 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
         const resultsHolder= document.querySelector(".results");
        resultsHolder.classList.remove("invisible");
 
-      tripData.push(destination);
-      tripData.push(res.weatherApiResponse.data[daysleft].temp + "°C");
-      tripData.push(res.weatherApiResponse.data[daysleft].weather.description);
-      tripData.push(`<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`);
-      console.log("trip-data"+tripData);
+      tripData.destination= destination;
+      tripData.temperature = res.weatherApiResponse.data[daysleft].temp + "°C";
+      tripData.daysleft= res.weatherApiResponse.data[daysleft].weather.description;
+      tripData.weatherIcon= `<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`;
+      console.log("trip-data"+tripData.destination);
           }
    )
 
    post('http://localhost:8081/addImage',{destination:destination})
 .then(function (res){
   document.getElementById('image').setAttribute('src', res.image);
-  document.getElementById('image').style.width = "400px";
+  document.getElementById('image').style.width = "300px";
   document.getElementById('image').style.borderRadius = "2px"
   
-  tripData.push(res.image);
+  tripData.image = res.image;
     }
 
   )
@@ -87,13 +86,22 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
 }
 
 function addToPastTrip(){
-  /*const savedTrips = document.querySelector('.past-trips');
-  savedTrips.classList.add('card');
-  savedTrips.classList.add('col');
+  const savedTrips = document.querySelector('.past-trips');
+  savedTrips.classList.remove('displaynone')
   const newdiv = document.createElement('div');
+  newdiv.classList.add('card');
+  newdiv.classList.add('col-4');
   savedTrips.appendChild(newdiv);
-  newdiv.classList.add('card-body');*/
-const savedTrips = document.querySelector('.past-trips');
+  const newdiv2 = document.createElement('div');
+  newdiv2.classList.add('card-body');
+  newdiv.appendChild(newdiv2);
+  
+  newdiv2.innerHTML = document.querySelector(".big-card").innerHTML;
+
+
+
+
+/*const savedTrips = document.querySelector('.past-trips');
 savedTrips.classList.remove('displaynone');
 document.getElementById('city2').innerHTML = tripData[1];
 document.getElementById('city2').style.fontSize = "30px";
@@ -104,7 +112,7 @@ document.getElementById('icon2').innerHTML= tripData[4];
 document.getElementById('image2').setAttribute('src', tripData[0]);
 document.getElementById('image2').style.width = "300px";
 //document.getElementById('save2').innerHTML= `<img src="src/client/media/img/heart.png " width=15px height= 15px >`+" Save trip ";
-
+*/
 }
 
     
@@ -144,7 +152,7 @@ const postData = async ( url = '', data = {})=>{
 
     try {
       const newData = await response.json();
-      console.log(newData);//Data from api
+      console.log("data-from-api::" +newData);//Data from api
       return newData;
     }catch(error) {
       console.log("error", error);

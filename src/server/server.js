@@ -50,7 +50,8 @@ const getDataFromGeoNames= async (username,city)=>{
                 .then(res=>{
                     return {
                         lat:res.data.geonames[0].lat,
-                        lng:res.data.geonames[0].lng 
+                        lng:res.data.geonames[0].lng,
+                        countryName:res.data.geonames[0].countryName
                     }
                 });
     } catch(error){
@@ -95,12 +96,13 @@ const getCurrentWeather= async (lat, lng, key) =>{
         const res = await fetch(`https://pixabay.com/api/?key=${key}&q=${city}&image_type=photo`)
         try{
             let data=await res.json();
-            //if pixabay does not find pictures that match the city show a picture related to travel
+            //if pixabay does not find pictures that match the city show a picture of the country
             if(data.hits[0] == undefined || null){
                 return getPixabayPicture ("travel", key);
             }
             const first_image = data.hits[0].webformatURL;
-            console.log(first_image);
+            console.log("first-image::" + first_image);
+            
             return first_image;
         } catch(error){
             console.log("error", error)
@@ -115,10 +117,12 @@ app.post('/addCity', function(req,res){
     let returnDate = req.body.returnDate;
     let daysleft = req.body.daysleft;
     
+    
          getDataFromGeoNames(APIusername,city)
         .then(apiResponse => {
         console.log("api-response long:" + apiResponse.lng + " ,lat "+ apiResponse.lat)
         projectData.apiResponse = apiResponse;
+
     
          getDataFromWeatherBit (apiResponse.lat,apiResponse.lng,apiKey)
             .then(weatherApiResponse => {
@@ -179,7 +183,7 @@ app.post('/addCity', function(req,res){
        });
        console.log(city);
    })
-    
+   
     //https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
 
     /*app.post('/addCity', function(req,res){ 
