@@ -69,7 +69,7 @@ main{
      
 
 #icon{
-    margin-left:10vh;
+    margin-left:4vh;
     //border: solid 2px green;
     padding-right: 0vh;
 }
@@ -100,5 +100,10 @@ main{
 
 .displaynone{
     display:none;
+}
+.past-trips{
+ display: flex;
+ flex-direction: row;
+ 
 }
 
