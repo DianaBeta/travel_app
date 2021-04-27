@@ -7,18 +7,20 @@
 
 body{
     font-family: Arial, Helvetica, sans-serif;
-    display: grid;
+    //display: grid;
     /*grid-template-areas: "h h h h h h"
                          "f f f f f f"
                          "r r r r r r"
                          "ft ft ft ft ft ft";*/
     background-color: #f1f5f8;
     margin: 0 auto -50px;
+    
 }
 
 main{
     //min-height: 100%;
     //margin-bottom: -40px;
+    
     
 }
 
@@ -37,10 +39,10 @@ main{
                          "i r r r";*/
 }
 
-.image{
+#image{
     //grid-area: i;
-    border-radius: 4px;
-    size: 10px;
+    padding-left:3vh;
+   
 
 }
 
@@ -104,6 +106,9 @@ main{
 .past-trips{
  display: flex;
  flex-direction: row;
+ flex-wrap: wrap;
+ justify-content: center;
  
+
 }
 

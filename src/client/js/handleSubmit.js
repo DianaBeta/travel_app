@@ -1,4 +1,19 @@
 const tripData = {};
+let destination = document.getElementById('destination').value;
+let departureDate = new Date(document.getElementById('date').value);
+let today = new Date(); 
+ let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();     
+ 
+ var one_day= 1000 * 60 *60 *24;
+ let difference_ms= ((departureDate.getTime())-(today.getTime()));
+ console.log("difference ms:"+ difference_ms);
+
+ var  daysleft = Math.round(difference_ms/one_day);
+ daysleft = daysleft + 1;
+
+ document.getElementById("date").min= new Date().toISOString().split("T")[0];
+
+
 function handleSubmit(event){
  event.preventDefault()
  
@@ -90,15 +105,19 @@ function addToPastTrip(){
   savedTrips.classList.remove('displaynone')
   const newdiv = document.createElement('div');
   newdiv.classList.add('card');
-  newdiv.classList.add('col-4');
   savedTrips.appendChild(newdiv);
   const newdiv2 = document.createElement('div');
   newdiv2.classList.add('card-body');
   newdiv.appendChild(newdiv2);
+  const deleteTrip = document.createElement('div');
+  deleteTrip.classList.add('btn','btn-light','row-sm', 'card-footer');
+  newdiv.appendChild(deleteTrip);
+  deleteTrip.innerHTML= "Remove trip"
+
   
   newdiv2.innerHTML = document.querySelector(".big-card").innerHTML;
-
-
+  
+  localStorage.setItem(savedTrip, "savedTrip" )
 
 
 /*const savedTrips = document.querySelector('.past-trips');
