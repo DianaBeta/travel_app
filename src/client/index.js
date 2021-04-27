@@ -12,6 +12,7 @@ import './media/img/heart.png';
 import { handleSubmit } from './js/handleSubmit'
 import { addToPastTrip} from './js/handleSubmit'
 
+
 export {
     handleSubmit,
     addToPastTrip

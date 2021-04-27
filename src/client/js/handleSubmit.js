@@ -3,7 +3,7 @@ let destination = document.getElementById('destination').value;
 let departureDate = new Date(document.getElementById('date').value);
 let today = new Date(); 
  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();     
- 
+ let apicallnumber = 0;
  var one_day= 1000 * 60 *60 *24;
  let difference_ms= ((departureDate.getTime())-(today.getTime()));
  console.log("difference ms:"+ difference_ms);
@@ -74,7 +74,7 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
         document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
         document.getElementById('icon').innerHTML= `<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`;
         document.getElementById('save').innerHTML= `<img src="src/client/media/img/heart.png " width=15px height= 15px >`+" Save trip ";
-        //document.getElementById('image').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
+        //document.getElementById('').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
         //`<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=50px width=50px>
         const resultsHolder= document.querySelector(".results");
        resultsHolder.classList.remove("invisible");
@@ -85,6 +85,7 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
       tripData.weatherIcon= `<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`;
       console.log("trip-data"+tripData.destination);
           }
+
    )
 
    post('http://localhost:8081/addImage',{destination:destination})
@@ -94,11 +95,14 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
   document.getElementById('image').style.borderRadius = "2px"
   
   tripData.image = res.image;
+  apicallnumber ++;
+  console.log("apicallnumber::" + apicallnumber);
     }
 
   )
   
 }
+
 
 function addToPastTrip(){
   const savedTrips = document.querySelector('.past-trips');
@@ -110,14 +114,25 @@ function addToPastTrip(){
   newdiv2.classList.add('card-body');
   newdiv.appendChild(newdiv2);
   const deleteTrip = document.createElement('div');
-  deleteTrip.classList.add('btn','btn-light','row-sm', 'card-footer');
+  deleteTrip.classList.add('btn','btn-light','row-sm', 'card-footer', 'delete');
   newdiv.appendChild(deleteTrip);
-  deleteTrip.innerHTML= "Remove trip"
+  deleteTrip.innerHTML= "Remove trip";
 
+  newdiv.setAttribute('data-trip-id', apicallnumber)
+  deleteTrip.setAttribute('data-trip-id', apicallnumber)
   
   newdiv2.innerHTML = document.querySelector(".big-card").innerHTML;
-  
-  localStorage.setItem(savedTrip, "savedTrip" )
+
+  document.querySelectorAll(".delete").forEach((element) => {
+    element.addEventListener("click", () => {
+      const tripId = element.getAttribute("data-trip-id");
+      console.log("tripId::" + tripId);
+      newdiv.classList.add('displaynone');
+      
+    });
+  });
+
+ 
 
 
 /*const savedTrips = document.querySelector('.past-trips');
@@ -181,6 +196,7 @@ const postData = async ( url = '', data = {})=>{
 export { handleSubmit } 
  
 export{ addToPastTrip}
+
 
 
 //weatherbit api: iterate through data object and iterate into each of the 16 arrays comparing if the departure date and the valid date match. 
