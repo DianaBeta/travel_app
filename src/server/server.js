@@ -4,8 +4,7 @@ dotenv.config();
 var APIusername = process.env. APIUSERNAME;//dianabetancourt
 const apiKey= process.env. APIKEY;
 const pixabaykey = process.env. PIXABAYKEY;
-let today = new Date(); 
-let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
 //https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
 
 //emty JS project to act as endpoint for all routes
@@ -81,7 +80,7 @@ const getCurrentWeather= async (lat, lng, key) =>{
     try{
         return await axios.get(url)
                 .then(res=>{
-                    console.log(res.data)
+                    //console.log("current weather::"+res.data)
                     return {
                         data: res.data.data
                     }
@@ -109,8 +108,26 @@ const getCurrentWeather= async (lat, lng, key) =>{
         }
     }
 
+
+    const getRestCountries = async (country)=>{
+        const url = `https://restcountries.eu/rest/v2/name/${country}`;
         
-//retrieving the user input that indicates the city
+        try{ return await axios.get(url)
+        
+                    .then(res=> {
+                        console.log(res.data[0].name)
+                        return {
+                            
+                            data:res.data
+                        }
+                    });
+                }catch(error){
+        console.log("error",error)
+        }
+    }
+
+        
+//retrieving the user input that indicates the city and the days left and sending api responses to the front-end
 app.post('/addCity', function(req,res){
     let city = req.body.destination;
     let departureDate= req.body.departureDate;
@@ -118,13 +135,19 @@ app.post('/addCity', function(req,res){
     let daysleft = req.body.daysleft;
     
     
-         getDataFromGeoNames(APIusername,city)
+     getDataFromGeoNames(APIusername,city)
         .then(apiResponse => {
         console.log("api-response long:" + apiResponse.lng + " ,lat "+ apiResponse.lat)
         projectData.apiResponse = apiResponse;
 
-    
-         getDataFromWeatherBit (apiResponse.lat,apiResponse.lng,apiKey)
+
+        getRestCountries(apiResponse.countryName)
+        .then(restcountriesresponse =>{
+            projectData.restcountriesresponse= restcountriesresponse;
+        
+
+        if (daysleft < 16){ 
+             getDataFromWeatherBit (apiResponse.lat,apiResponse.lng,apiKey)
             .then(weatherApiResponse => {
                 /*for(const[key, value] of Object.entries(data)){
                     data[i].forEach(element => if (element === valid_date && value === departureDate){
@@ -158,9 +181,9 @@ app.post('/addCity', function(req,res){
                  //res.send(pixabayresponse);
         projectData.pixabayresponse = pixabayresponse;   
                 
-            })*/
+            })
              res.send(projectData);
-         //   }
+           }
           /*  else getCurrentWeather(apiResponse.lat,apiResponse.lng,apiKey)
             .then (_currentWeatherApiResponse => {
             console.log("api-response current weather:" + _currentweatherApiResponse.timezone)
@@ -170,10 +193,22 @@ app.post('/addCity', function(req,res){
             }) */
 
              })
-        })
+             res.send(projectData); 
+            }
+            
+            else getCurrentWeather (apiResponse.lat,apiResponse.lng,apiKey).then(currentweatherApiResponse => {
+                projectData.currentweatherApiResponse = currentweatherApiResponse;
 
-    })   
+                res.send(projectData); 
+            })
+       
+
+        })
     
+
+    })
+})     
+
    app.post('/addImage', async(req,res)=>{
        const city = req.body.destination;
        const img = await getPixabayPicture(city,pixabaykey);

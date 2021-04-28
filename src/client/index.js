@@ -11,11 +11,13 @@ function importAll(r) {
 import './media/img/heart.png';
 import { handleSubmit } from './js/handleSubmit'
 import { addToPastTrip} from './js/handleSubmit'
+import { formValidator} from './js/formValidator'
 
 
 export {
     handleSubmit,
-    addToPastTrip
+    addToPastTrip,
+    formValidator
    }
 
 

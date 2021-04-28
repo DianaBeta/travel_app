@@ -22,27 +22,19 @@
                     
                     
                         <input type="text" class="form-control was-validated" id="destination" input = required placeholder="City">
+                        <div class="alert alert-warning alert-dismissible fade show displaynone emptycity" role="alert">
+                            Please enter a valid city.
+                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                             </button>
+                       </div>
                     </div>
                     
                     <div class="col-sm-5">
                        
                         <label for="date" class="form-label">Departure date </label>   
                         <input type="date" id = date  min= "2021-13-04" max ="2021-30-04" class="form-control" input= "required">
-                        <small id="HelpBlock" class="form-text text-muted invisible">
-                            The date should be max. 15 days from today.
-                          </small>
-                          <div class="alert alert-warning alert-dismissible fade show beforetoday displaynone" role="alert">
-                            The date cannot be before today!
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                        <div class="alert alert-warning alert-dismissible fade show displaynone toofar" role="alert">
-                             The date should be max. 15 days from today.
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                        </div>
+                        
                           
                      </div>
                     
@@ -89,10 +81,19 @@
                                         <div id="temperature" class= "row-sm temperature" ></div>
                                         <div id="description" class= "row-sm description"></div>
                                     </div>
-                                
                                 </div>
-                        
+                                <div class = "card-text row-xl-12">
+                                    <div class = "row">
+                                        <div id= "countryInfo" class= "col countryInfo"></div>
+                                    </div>
+                                </div>
+                                <!--<div class = "card-text row-sm-4">
+                                <div class id ="col-sm">
+                                    <div id= "countryInfo" class= "row-sm countryInfo"></div>
+                                </div>-->
                             </div>
+                        
+                            
                     
                         </div>
                         <div id = "save" onclick="return Client.addToPastTrip()" class= " btn btn-light row-sm card-footer">  </div>
@@ -103,6 +104,7 @@
 
             <section>
               <div id= " row row-cols-1 row-cols-sm-2 row-cols-md-3 past-trips" class = "past-trips displaynone">
+                  
                   <!--
                     <div class = "card col-sm-2">
                         <div class = " card-body">

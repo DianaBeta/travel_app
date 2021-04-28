@@ -8,8 +8,8 @@ let today = new Date();
  let difference_ms= ((departureDate.getTime())-(today.getTime()));
 console.log("today::"+ (new Date().toISOString().split("T")[0]))
 
- var  daysleft = Math.round(difference_ms/one_day);
- //daysleft = daysleft + 1;
+ var  daysleft = (difference_ms/one_day);
+ daysleft = daysleft + 1;
 
  document.getElementById("date").min= new Date().toISOString().split("T")[0];
 
@@ -28,10 +28,10 @@ function handleSubmit(event){
  
  var one_day= 1000 * 60 *60 *24;
  let difference_ms= ((departureDate.getTime())-(today.getTime()));
- console.log("difference ms:"+ difference_ms);
+
 
  var  daysleft = Math.round(difference_ms/one_day);
- //daysleft = daysleft + 1;
+ daysleft = daysleft + 1;
 
 
 
@@ -48,6 +48,7 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
           document.getElementById('temperature').style.fontSize = "25px";
           document.getElementById('temperature').innerHTML= res.weatherApiResponse.data[daysleft].temp + "°C";
           document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
+          document.getElementById('countryInfo').innerHTML="Currency of your destination: " + res.restcountriesresponse.data[0].currencies[0].name;
           document.getElementById('icon').innerHTML= `<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`;
           document.getElementById('save').innerHTML= `<img src="src/client/media/img/heart.png " width=15px height= 15px >`+" Save trip ";
           //document.getElementById('image').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
@@ -66,6 +67,7 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
               document.getElementById('temperature').innerHTML= res.weatherApiResponse.data[daysleft].temp + "°C";
               document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
               document.getElementById('icon').innerHTML= `<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`;
+              document.getElementById('countryInfo').innerHTML="Currency of your destination: " + res.restcountriesresponse.data[0].currencies[0].name;
               document.getElementById('save').innerHTML= `<img src="src/client/media/img/heart.png " width=15px height= 15px >`+" Save trip ";
               //document.getElementById('image').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
          
@@ -84,6 +86,8 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
             document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
             document.getElementById('icon').innerHTML= `<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`;
             document.getElementById('save').innerHTML= `<img src="src/client/media/img/heart.png " width=15px height= 15px >`+" Save trip ";
+            console.log(res.restcountriesresponse.data[0].name)
+            document.getElementById('countryInfo').innerHTML="Currency of your destination: " + res.restcountriesresponse.data[0].currencies[0].name;
             //document.getElementById('image').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
          
           const resultsHolder= document.querySelector(".results");
@@ -100,6 +104,7 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
               document.getElementById('description').innerHTML= res.currentweatherApiResponse.data[0].weather.description;
               document.getElementById('icon').innerHTML= `<img src="src/client/media/icons/${res.currentweatherApiResponse.data[0].weather.icon}.png" height=80px width=80px>`;
               document.getElementById('save').innerHTML= `<img src="src/client/media/img/heart.png " width=15px height= 15px >`+" Save trip ";
+              document.getElementById('countryInfo').innerHTML="Currency of your destination: " + res.restcountriesresponse.data[0].currencies[0].name;
               //document.getElementById('image').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
               const resultsHolder= document.querySelector(".results");
               resultsHolder.classList.remove("invisible");
@@ -226,7 +231,6 @@ const postData = async ( url = '', data = {})=>{
 
     try {
       const newData = await response.json();
-      console.log("data-from-api::" +newData);//Data from api
       return newData;
     }catch(error) {
       console.log("error", error);
