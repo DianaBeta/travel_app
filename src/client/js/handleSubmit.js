@@ -1,15 +1,15 @@
 const tripData = {};
-let destination = document.getElementById('destination').value;
+/*let destination = document.getElementById('destination').value;
 let departureDate = new Date(document.getElementById('date').value);
 let today = new Date(); 
- let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();     
+ let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();  */   
  let apicallnumber = 0;
- var one_day= 1000 * 60 *60 *24;
+ /*var one_day= 1000 * 60 *60 *24;
  let difference_ms= ((departureDate.getTime())-(today.getTime()));
-console.log("today::"+ (new Date().toISOString().split("T")[0]))
+console.log("today::"+ (new Date().toISOString().split("T")[0])) */
 
- var  daysleft = (difference_ms/one_day);
- daysleft = daysleft + 1;
+ //var  daysleft = (difference_ms/one_day);
+ //daysleft = daysleft + 1;
 
  document.getElementById("date").min= new Date().toISOString().split("T")[0];
 
@@ -30,8 +30,8 @@ function handleSubmit(event){
  let difference_ms= ((departureDate.getTime())-(today.getTime()));
 
 
- var  daysleft = Math.round(difference_ms/one_day);
- daysleft = daysleft + 1;
+ var  daysleft = Math.abs((Math.ceil(difference_ms/one_day)));
+ //daysleft = daysleft + 1;
 
 
 
@@ -81,15 +81,14 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
             document.getElementById('city').innerHTML = destination.bold();
             document.getElementById('city').style.fontSize = "30px";
             document.getElementById('country').innerHTML= res.apiResponse.countryName;
+            document.getElementById('typicalweather').innerHTML= "Predicted weather:";
             document.getElementById('temperature').innerHTML= res.weatherApiResponse.data[daysleft].temp + "°C";
             document.getElementById('temperature').style.fontSize = "25px";
             document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
             document.getElementById('icon').innerHTML= `<img src="src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`;
             document.getElementById('save').innerHTML= `<img src="src/client/media/img/heart.png " width=15px height= 15px >`+" Save trip ";
-            console.log(res.restcountriesresponse.data[0].name)
             document.getElementById('countryInfo').innerHTML="Currency of your destination: " + res.restcountriesresponse.data[0].currencies[0].name;
             //document.getElementById('image').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
-         
           const resultsHolder= document.querySelector(".results");
          resultsHolder.classList.remove("invisible");
              }
@@ -99,12 +98,14 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
               document.getElementById('city').innerHTML = destination.bold();
               document.getElementById('city').style.fontSize = "30px";
               document.getElementById('country').innerHTML= res.apiResponse.countryName;
+              document.getElementById('typicalweather').innerHTML= "Current weather:";
               document.getElementById('temperature').style.fontSize = "25px";
               document.getElementById('temperature').innerHTML= res.currentweatherApiResponse.data[0].temp + "°C";
               document.getElementById('description').innerHTML= res.currentweatherApiResponse.data[0].weather.description;
               document.getElementById('icon').innerHTML= `<img src="src/client/media/icons/${res.currentweatherApiResponse.data[0].weather.icon}.png" height=80px width=80px>`;
               document.getElementById('save').innerHTML= `<img src="src/client/media/img/heart.png " width=15px height= 15px >`+" Save trip ";
               document.getElementById('countryInfo').innerHTML="Currency of your destination: " + res.restcountriesresponse.data[0].currencies[0].name;
+              
               //document.getElementById('image').innerHTML.setAttribute('src', res.pixabayresponse.data.hits[0].webformatURL);
               const resultsHolder= document.querySelector(".results");
               resultsHolder.classList.remove("invisible");
@@ -164,18 +165,27 @@ function addToPastTrip(){
   deleteTrip.innerHTML= "Remove trip";
 
   newdiv.setAttribute('data-trip-id', apicallnumber)
-  deleteTrip.setAttribute('data-trip-id', apicallnumber)
+  //deleteTrip.setAttribute('data-trip-id', apicallnumber)
+  
   
   newdiv2.innerHTML = document.querySelector(".big-card").innerHTML;
 
-  document.querySelectorAll(".delete").forEach((element) => {
+  
+  deleteTrip.addEventListener("click", () => {
+    const tripId = deleteTrip.getAttribute("data-trip-id");
+    console.log("tripId::" + tripId);
+    //newdiv.classList.add('displaynone');
+    newdiv.remove();
+  });
+  /*document.querySelectorAll(".delete").forEach((element) => {
     element.addEventListener("click", () => {
       const tripId = element.getAttribute("data-trip-id");
       console.log("tripId::" + tripId);
       //newdiv.classList.add('displaynone');
-      newdiv.remove();
+      newdiv.remove(); 
     });
-  });
+  }); */
+
 
  
 

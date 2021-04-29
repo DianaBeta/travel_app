@@ -60,7 +60,7 @@ main{
 }
 .card-title{
     border-bottom: 1px solid rgba(211, 209, 209, 0.705);
-    margin-bottom: 4vh;
+    margin-bottom: 2vh;
     //border: solid 2px purple;
 }
 .temperature{
@@ -113,5 +113,9 @@ main{
 
 .emptycity{
     margin-top:2vh;
+}
+
+#countryInfo{
+    margin-top:4vh;
 }
 
