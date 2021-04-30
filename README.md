@@ -11,27 +11,26 @@ This information is retrieved from three APIs
 The project uses an Express server to store the data from the app. GET and POST routes are used to communicate with the app.
 
 The APIs used where the following:
-<ul>
-  <li>GeoNames</li>
-  <li>Weatherbit.io</li>
-  <li>restcountries.eu</li>
+ *[GeoNames](https://www.geonames.org/login)
+  *[Weatherbit.io](https://www.weatherbit.io/)
+  *[restcountries.eu](https://restcountries.eu/)
   
   Also, webpack is used as a module bundler. 
   
   <h3>Layout and media</h4>
   <ul>
-  The app ayout is built with Bootstrap. 
-  The weather icons were downloaded from Weatherbit.io
-  The images are retrieved from Pixabay
+  *The app ayout is built with [Bootstrap](https://getbootstrap.com/). 
+  *The weather icons were downloaded from Weatherbit.io
+  *The images are retrieved from Pixabay
   </ul>
   
   <h4>Installation</h4>
   You need to install node.js on your machine. 
   Use npm install to install the required packages on your machine. 
   
-  Get API keys
-  <ul>
-  <li>GeoNames</li>
-  <li>Pixabay</li>
-  <li>Weatherbit.io</li>
+  <h5>Get API keys>/h5>
+  
+  *GeoNames
+  *Pixabay
+  *Weatherbit.io
   
