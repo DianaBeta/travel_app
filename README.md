@@ -35,11 +35,11 @@ The APIs used where the following:
   
  * [GeoNames](https://www.geonames.org/login)
  * [Weatherbit.io](https://www.weatherbit.io/)
- * [restcountries.eu](https://restcountries.eu/)
+ * [restcountries.eu](https://restcountries.eu/) note: restcountries. eu api does not need a key.
  * [Pixabay API](https://pixabay.com/service/about/api/)
-   note: restcountries. eu api does not need a key.
+   
   
-  * Create an account in each of the APIs websites and add them to the files. 
+  <h5> Create an account in each of the APIs websites and add them to the files. </h5>
   1. npm run build-dev
   2. npm run build-prod
   3. npm start
