@@ -1,15 +1,7 @@
 const tripData = {};
-/*let destination = document.getElementById('destination').value;
-let departureDate = new Date(document.getElementById('date').value);
-let today = new Date(); 
- let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();  */   
+  
  let apicallnumber = 0;
- /*var one_day= 1000 * 60 *60 *24;
- let difference_ms= ((departureDate.getTime())-(today.getTime()));
-console.log("today::"+ (new Date().toISOString().split("T")[0])) */
 
- //var  daysleft = (difference_ms/one_day);
- //daysleft = daysleft + 1;
 
  document.getElementById("date").min= new Date().toISOString().split("T")[0];
 
