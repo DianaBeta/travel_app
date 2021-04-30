@@ -157,7 +157,7 @@ app.post('/addCity', function(req,res){
                //console.log("high-temp:" + weatherApiResponse.data[daysleft].high_temp + "low temp::" + weatherApiResponse.data[daysleft].low_temp)
                 //res.json(weatherApiResponse);
         projectData.weatherApiResponse = weatherApiResponse;
-        
+        res.send(projectData);
        /* app.post('/addImage', async(req,res)=>{
             const city = req.body.destination;
             const img = await getPixabayPicture(city,pixabaykey);
@@ -193,7 +193,7 @@ app.post('/addCity', function(req,res){
             }) */
 
              })
-             res.send(projectData); 
+             //res.send(projectData); 
             }
             
             else getCurrentWeather (apiResponse.lat,apiResponse.lng,apiKey).then(currentweatherApiResponse => {

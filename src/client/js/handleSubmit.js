@@ -1,14 +1,12 @@
-const tripData = {};
-  
- let apicallnumber = 0;
 
-
- document.getElementById("date").min= new Date().toISOString().split("T")[0];
 
 
 function handleSubmit(event){
  event.preventDefault()
- 
+ const tripData = {};
+  
+ let apicallnumber = 0;
+
  let destination = document.getElementById('destination').value;
   if (Client.formValidator(destination) == false){
     return;
@@ -156,7 +154,7 @@ function addToPastTrip(){
   newdiv.appendChild(deleteTrip);
   deleteTrip.innerHTML= "Remove trip";
 
-  newdiv.setAttribute('data-trip-id', apicallnumber)
+  //newdiv.setAttribute('data-trip-id', apicallnumber)
   //deleteTrip.setAttribute('data-trip-id', apicallnumber)
   
   
@@ -164,8 +162,8 @@ function addToPastTrip(){
 
   
   deleteTrip.addEventListener("click", () => {
-    const tripId = deleteTrip.getAttribute("data-trip-id");
-    console.log("tripId::" + tripId);
+    //const tripId = deleteTrip.getAttribute("data-trip-id");
+    //console.log("tripId::" + tripId);
     //newdiv.classList.add('displaynone');
     newdiv.remove();
   });
