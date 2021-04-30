@@ -39,8 +39,10 @@ The APIs used where the following:
  * [Pixabay API](https://pixabay.com/service/about/api/)
    
   
-  <h5> Create an account in each of the APIs websites and add them to the files. </h5>
+  <h6> Create an account in each of the APIs websites and add them to the files.</h6>
   1. npm run build-dev
+  
   2. npm run build-prod
-  3. npm start
+  
+  4. npm start
   
