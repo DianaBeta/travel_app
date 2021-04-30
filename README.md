@@ -28,7 +28,7 @@ The APIs used where the following:
   You need to install node.js on your machine. 
   Use npm install to install the required packages on your machine. 
   
-  <h5>Get API keys>/h5>
+  <h5>Get API keys</h5>
   
   *GeoNames
   *Pixabay
