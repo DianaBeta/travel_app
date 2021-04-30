@@ -15,6 +15,7 @@ The APIs used where the following:
  * [GeoNames](https://www.geonames.org/login)
  * [Weatherbit.io](https://www.weatherbit.io/)
  * [restcountries.eu](https://restcountries.eu/)
+ * [Pixabay API](https://pixabay.com/service/about/api/)
  
   
   Also, webpack is used as a module bundler. 
@@ -23,7 +24,7 @@ The APIs used where the following:
   
   * The app ayout is built with [Bootstrap](https://getbootstrap.com/). 
   * The weather icons were downloaded from Weatherbit.io
-  * The images are retrieved from Pixabay
+  * The images are retrieved from [Pixabay](https://pixabay.com/service/about/api/)
   
   
   <h4>Installation</h4>
@@ -32,9 +33,11 @@ The APIs used where the following:
   
   <h5>Get API keys</h5>
   
-  * GeoNames
-  * Pixabay
-  * Weatherbit.io
+ * [GeoNames](https://www.geonames.org/login)
+ * [Weatherbit.io](https://www.weatherbit.io/)
+ * [restcountries.eu](https://restcountries.eu/)
+ * [Pixabay API](https://pixabay.com/service/about/api/)
+   note: restcountries. eu api does not need a key.
   
   * Create an account in each of the APIs websites and add them to the files. 
   1. npm run build-dev
