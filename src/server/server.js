@@ -5,6 +5,7 @@ var APIusername = process.env. APIUSERNAME;//dianabetancourt
 const apiKey= process.env. APIKEY;
 const pixabaykey = process.env. PIXABAYKEY;
 
+
 //https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
 
 //emty JS project to act as endpoint for all routes
@@ -33,13 +34,14 @@ app.get('/all', function (req, res) {
 app.use(express.static('dist'))
 
 // designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-    console.log('listening on port 8081!')
-})
+//app.listen(8081, function () {
+//    console.log('listening on port 8081!')
+//})
 
 //axions instead of fetch
 const axios = require('axios');
 const { response } = require("express");
+const { ModuleFilenameHelpers } = require("webpack");
 //post route
 //Geonames API function definition
 const getDataFromGeoNames= async (username,city)=>{
@@ -237,7 +239,7 @@ app.post('/addCity', function(req,res){
             
         })*/
 
-
+module.exports = app
         
    
 

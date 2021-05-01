@@ -6,10 +6,11 @@ const tripData = {};
 
 
  document.getElementById("date").min= new Date().toISOString().split("T")[0];
-import datepicker from 'js-datepicker'
+
 import 'regenerator-runtime/runtime';
 import 'bootstrap';
 import './styles/base.scss'
+
 // Loading weather icons
 function importAll(r) {
     return r.keys().map(r);
