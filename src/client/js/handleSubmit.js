@@ -96,7 +96,7 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
 .then(function (res){
   document.getElementById('image').setAttribute('src', res.image);
   document.getElementById('image').style.width = "50vh";
-  document.getElementById('image').style.height = "35vh";
+  document.getElementById('image').style.height = "auto";
   document.getElementById('image').style.borderRadius = "2px"
   
   tripData.image = res.image;

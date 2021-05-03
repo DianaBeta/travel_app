@@ -100,7 +100,7 @@ const getCurrentWeather= async (lat, lng, key) =>{
             if(data.hits[0] == undefined || null){
                 return getPixabayPicture ("travel", key);
             }
-            const first_image = data.hits[0].webformatURL;
+            const first_image = data.hits[1].webformatURL;
             console.log("first-image::" + first_image);
             
             return first_image;
