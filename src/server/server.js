@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const dotenv = require ('dotenv');
 dotenv.config();
-var APIusername = process.env. APIUSERNAME;//dianabetancourt
+let APIusername = process.env. APIUSERNAME;//dianabetancourt
 const apiKey= process.env. APIKEY;
 const pixabaykey = process.env. PIXABAYKEY;
 

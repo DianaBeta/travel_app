@@ -17,11 +17,11 @@ function handleSubmit(event){
  let today = new Date(); 
  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();     
  
- var one_day= 1000 * 60 *60 *24;
+ let one_day= 1000 * 60 *60 *24;
  let difference_ms= ((departureDate.getTime())-(today.getTime()));
 
 //function that calculates how many dates are left for the trip
- var  daysleft = Math.abs((Math.ceil(difference_ms/one_day)));
+ let  daysleft = Math.abs((Math.ceil(difference_ms/one_day)));
 
 
 
