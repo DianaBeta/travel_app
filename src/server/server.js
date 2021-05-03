@@ -32,10 +32,6 @@ app.get('/all', function (req, res) {
 //look for the assets in the dist folder
 app.use(express.static('dist'))
 
-// designates what port the app will listen to for incoming requests
-//app.listen(8081, function () {
-//    console.log('listening on port 8081!')
-//})
 
 //axios instead of fetch
 const axios = require('axios');
@@ -97,7 +93,7 @@ const getCurrentWeather= async (lat, lng, key) =>{
         try{
             let data=await res.json();
             //if pixabay does not find pictures that match the city show a picture of the country
-            if(data.hits[0] == undefined || null){
+            if(data.hits[1] == undefined || null){
                 return getPixabayPicture ("travel", key);
             }
             const first_image = data.hits[1].webformatURL;
