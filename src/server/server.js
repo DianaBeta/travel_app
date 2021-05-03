@@ -2,8 +2,8 @@ const fetch = require("node-fetch");
 const dotenv = require ('dotenv');
 dotenv.config();
 let APIusername = process.env. APIUSERNAME;//dianabetancourt
-const apiKey= process.env. APIKEY;
-const pixabaykey = process.env. PIXABAYKEY;
+const apiKey= process.env. APIKEY;//8a2268cadd4140388570963ddbf02afc
+const pixabaykey = process.env. PIXABAYKEY;//21125444-62848c51ce09a8784479c70e0
 
 
 
