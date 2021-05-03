@@ -6,7 +6,6 @@ const apiKey= process.env. APIKEY;
 const pixabaykey = process.env. PIXABAYKEY;
 
 
-//https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
 
 //emty JS project to act as endpoint for all routes
 const projectData = {};
@@ -38,7 +37,7 @@ app.use(express.static('dist'))
 //    console.log('listening on port 8081!')
 //})
 
-//axions instead of fetch
+//axios instead of fetch
 const axios = require('axios');
 const { response } = require("express");
 const { ModuleFilenameHelpers } = require("webpack");
@@ -151,51 +150,12 @@ app.post('/addCity', function(req,res){
         if (daysleft < 16){ 
              getDataFromWeatherBit (apiResponse.lat,apiResponse.lng,apiKey)
             .then(weatherApiResponse => {
-                /*for(const[key, value] of Object.entries(data)){
-                    data[i].forEach(element => if (element === valid_date && value === departureDate){
-                    console.log(weatherApiResponse.data[0].valid_date)
-                }
-            } */
-               //console.log("high-temp:" + weatherApiResponse.data[daysleft].high_temp + "low temp::" + weatherApiResponse.data[daysleft].low_temp)
-                //res.json(weatherApiResponse);
+                
         projectData.weatherApiResponse = weatherApiResponse;
         res.send(projectData);
-       /* app.post('/addImage', async(req,res)=>{
-            const city = req.body.destination;
-            const img = await getPixabayPicture(city,pixabaykey);
-            res.send({
-                image: img
-            });
-            console.log(city);
-        }) */
-        /* getPixabayPicture(city,pixabaykey)
-        .then(pixabayresponse =>{
-            if (parseInt(pixabayresponse.data.totalHits) > 0){
-                 $.each(data.hits, function (i,hits){console.log(hit.pageURL); });
-            {
-                console.log('no hits');
-              getPixabayPicture("travel",pixabaykey)
-              .then(pixabaynohitsresponse =>{
-                  projectData.pixabaynohitsresponse = pixabaynohitsresponse;
-              })
-            }
-        
-                 //res.send(pixabayresponse);
-        projectData.pixabayresponse = pixabayresponse;   
-                
-            })
-             res.send(projectData);
-           }
-          /*  else getCurrentWeather(apiResponse.lat,apiResponse.lng,apiKey)
-            .then (_currentWeatherApiResponse => {
-            console.log("api-response current weather:" + _currentweatherApiResponse.timezone)
-                res.json(_currentweatherApiResponse);
-                })
-        
-            }) */
-
+      
              })
-             //res.send(projectData); 
+            
             }
             
             else getCurrentWeather (apiResponse.lat,apiResponse.lng,apiKey).then(currentweatherApiResponse => {
@@ -221,23 +181,7 @@ app.post('/addCity', function(req,res){
        console.log(city);
    })
    
-    //https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=8a2268cadd4140388570963ddbf02afc
-
-    /*app.post('/addCity', function(req,res){ 
-        let city = req.body.destination;    
-    getPixabayPicture(city,pixabaykey)
-    .then(pixabayresponse =>{
-        console.log(pixabayresponse)
-        res.json("pixa " + res.data[0].hits.previewURL);
-    })
-})*/
-
-     /* getDataFromWeatherBit (apiResponse.lat,apiResponse.lng,apiKey).then(
-        weatherApiResponse => {
-            res.json(weatherApiResponse);
-            console.log("api-response:" + weatherApiResponse)
-            
-        })*/
+   
 
 module.exports = app
         
