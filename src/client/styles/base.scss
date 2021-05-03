@@ -1,56 +1,24 @@
 @import "~bootstrap/scss/bootstrap";
-@import "custom";
 @import "footer";
 @import "header";
 @import "form";
-@import "resets";
 
 body{
     font-family: Arial, Helvetica, sans-serif;
-    //display: grid;
-    /*grid-template-areas: "h h h h h h"
-                         "f f f f f f"
-                         "r r r r r r"
-                         "ft ft ft ft ft ft";*/
     background-color: #f1f5f8;
     margin: 0 auto -50px;
     
 }
 
-main{
-    //min-height: 100%;
-    //margin-bottom: -40px;
-    
-    
-}
-
-.row{
-    //border: solid 2px green;
-}
-
-.col{
-    //border: solid 2px blue;
-}
-
-.results{
-    /*display: grid;
-    grid-template-areas: "i r r r"
-                         "i r r r"
-                         "i r r r";*/
-}
 
 #image{
-    //grid-area: i;
-    padding-left:3vh;
+    
+    padding:2vh;
    
 
 }
 
-.description{/*
-    /*display: flex;
-    flex-direction: column;
-    grid-area: d;*/
-    //padding: 6vh;
+.description{
     font-size: 20px;
     color:#66819b;
 }
@@ -61,10 +29,10 @@ main{
 .card-title{
     border-bottom: 1px solid rgba(211, 209, 209, 0.705);
     margin-bottom: 2vh;
-    //border: solid 2px purple;
+
 }
 .temperature{
-    //margin:2vh;
+ 
     font-size: 20px;
     color:#102942;
     }
@@ -72,7 +40,6 @@ main{
 
 #icon{
     margin-left:4vh;
-    //border: solid 2px green;
     padding-right: 0vh;
 }
 .form-control{
@@ -88,7 +55,6 @@ main{
 }
 
 #save{
-    color:#66819b;
     font-weight: 700;
     font-size: 15px;
 }
