@@ -1,8 +1,17 @@
 {
   "name": "travel_app",
+<<<<<<< HEAD
    "engines":{
     "node":"12.22.1"
    },
+=======
+  "version": "1.0.0",
+  "description": "Travel app",
+  "main": "index.js",
+  "engines":{
+    "node":"12.22.1"
+  },
+>>>>>>> d0aece75d5f39a61f5e5478e864980c81a459233
   "scripts": {
     "start": "node src/server/start.js",
     "build": "webpack",
