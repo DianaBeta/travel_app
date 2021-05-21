@@ -28,7 +28,7 @@ function handleSubmit(event){
 
 
 //function that posts the data to the server and receives the input
-postData('/addCity', {destination: destination, departureDate: departureDate, daysleft: daysleft}).then(
+postData('http://localhost:8081/addCity', {destination: destination, departureDate: departureDate, daysleft: daysleft}).then(
   function(res){
     if (daysleft === 0){
       document.getElementById('information').innerHTML= "Your trip is today! better start packing!";
@@ -92,7 +92,7 @@ postData('/addCity', {destination: destination, departureDate: departureDate, da
 
    )
 
-   post('/addImage',{destination:destination})
+   post('http://localhost:8081/addImage',{destination:destination})
 .then(function (res){
   document.getElementById('image').setAttribute('src', res.image);
   document.getElementById('image').style.width = "50vh";
