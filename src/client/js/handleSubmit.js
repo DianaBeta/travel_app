@@ -62,7 +62,7 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
       document.getElementById('temperature').innerHTML= res.weatherApiResponse.data[daysleft].temp + "°C";
       document.getElementById('description').innerHTML= res.weatherApiResponse.data[daysleft].weather.description;
       document.getElementById('countryInfo').innerHTML= `Currency of your destination: ${res.restcountriesresponse.data[0].currencies[0].name}`;
-      document.getElementById('icon').innerHTML= `<img src="https://www.weatherbit.io/static/img/icons/${res.currentweatherApiResponse.data[0].weather.icon}.png" width=15px height= 15px >`
+      document.getElementById('icon').innerHTML= `<img src="https://www.weatherbit.io/static/img/icons/${res.weatherApiResponse.data[0].weather.icon}.png" width=80px height= 80px >`
       //`<img src="../src/client/media/icons/${res.weatherApiResponse.data[daysleft].weather.icon}.png" height=80px width=80px>`;
       document.getElementById('save').innerHTML= `${" Save trip "}`;
       //<img src="../src/client/media/img/heart.png " width=15px height= 15px >
@@ -81,7 +81,7 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
       document.getElementById('temperature').style.fontSize = "25px";
       document.getElementById('temperature').innerHTML= res.currentweatherApiResponse.data[0].temp + "°C";
       document.getElementById('description').innerHTML= res.currentweatherApiResponse.data[0].weather.description;
-      document.getElementById('icon').innerHTML= `<img src="https://www.weatherbit.io/static/img/icons/${res.currentweatherApiResponse.data[0].weather.icon}.png" width=15px height= 15px >`;
+      document.getElementById('icon').innerHTML= `<img src="https://www.weatherbit.io/static/img/icons/${res.currentweatherApiResponse.data[0].weather.icon}.png" width=80px height= 80px >`;
       //`<img src="../src/client/media/icons/${res.currentweatherApiResponse.data[0].weather.icon}.png" height=80px width=80px>`;
       document.getElementById('save').innerHTML= `${" Save trip" }`;
       //`<img src="../src/client/media/img/heart.png " width=15px height= 15px >
