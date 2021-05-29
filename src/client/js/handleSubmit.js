@@ -79,7 +79,8 @@ postData('http://localhost:8081/addCity', {destination: destination, departureDa
       document.getElementById('temperature').style.fontSize = "25px";
       document.getElementById('temperature').innerHTML= res.currentweatherApiResponse.data[0].temp + "°C";
       document.getElementById('description').innerHTML= res.currentweatherApiResponse.data[0].weather.description;
-      document.getElementById('icon').innerHTML= `<img src="../src/client/media/icons/${res.currentweatherApiResponse.data[0].weather.icon}.png" height=80px width=80px>`;
+      document.getElementById('icon').innerHTML= `<img src="https://www.weatherbit.io/static/img/icons/${res.currentweatherApiResponse.data[0].weather.icon}.png" width=15px height= 15px >${" Save trip" }`;
+      //`<img src="../src/client/media/icons/${res.currentweatherApiResponse.data[0].weather.icon}.png" height=80px width=80px>`;
       document.getElementById('save').innerHTML= `<img src="../src/client/media/img/heart.png " width=15px height= 15px >${" Save trip" }`;
       document.getElementById('countryInfo').innerHTML=` Currency of your destination: ${res.restcountriesresponse.data[0].currencies[0].name}`;
       const resultsHolder= document.querySelector(".results");
